@@ -1,0 +1,2 @@
+[type: gettext/rfc822deb] debian/ubuntu-advantage-tools.templates
+uaclient/messages/__init__.py

@@ -17,7 +17,6 @@ def main() -> int:
     # Make sure the ubuntupro.daemon logger does not generate double logging
     LOG.propagate = False
     setup_journald_logging(logging.ERROR, logging.getLogger("ubuntupro"))
-
     cfg = UAConfig()
 
     http.configure_web_proxy(cfg.http_proxy, cfg.https_proxy)

@@ -114,5 +114,6 @@ if __name__ == "__main__":
         logging.DEBUG,
         cfg.log_file,
     )
+
     http.configure_web_proxy(cfg.http_proxy, cfg.https_proxy)
     sys.exit(main(cfg))

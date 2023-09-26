@@ -184,7 +184,6 @@ if __name__ == "__main__":
     # Make sure the ubuntupro.timer logger does not generate double logging
     LOG.propagate = False
     setup_journald_logging(logging.ERROR, logging.getLogger("ubuntupro"))
-
     cfg = UAConfig()
     current_time = datetime.now(timezone.utc)
 

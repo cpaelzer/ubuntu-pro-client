@@ -24,12 +24,19 @@ else ifeq (${VERSION_ID},"19.10")
 APT_PKG_DEPS="apt (>= 1.8.1), apt-utils (>= 1.8.1), libapt-pkg5.90 (>= 1.8.1),"
 endif
 
+# This is an opt-out of .mo stripping during builds, which allows us to ship translations ourselves.
+# The downside is that this also disables everything else that pkgbinarymangler does.
+# This should be formalized by adding ubuntu-pro-client-l10n to striptranslations.blacklist in pkgbinarymangler
+# but for now, this decouples the SRU process of that change from the release of translations in ubuntu-pro-client-l10n.
+export NO_PKG_MANGLE=1
+
 %:
 	dh $@ --with python3,bash-completion,systemd --buildsystem=pybuild
 
 override_dh_auto_build:
 	dh_auto_build
 	make -C apt-hook build
+	make -C po build
 
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
@@ -85,3 +92,5 @@ endif
 override_dh_auto_clean:
 	dh_auto_clean
 	make clean
+
+override_dh_translations:
