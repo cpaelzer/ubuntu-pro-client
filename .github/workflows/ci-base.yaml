@@ -31,7 +31,7 @@ jobs:
         run: python3 ./tools/check-versions-are-consistent.py
       - name: Translation Template Updated
         run: |
-          bash ./tools/update-pos.sh
+          ./tools/update-pos.sh
           [ $(git diff --ignore-matching-lines="POT-Creation-Date" | wc -c) = "0" ]
   unit-tests:
     name: Unit Tests
